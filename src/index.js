@@ -3,13 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./containers/App";
 import * as serviceWorker from "./serviceWorker";
-import { Provider } from "react-redux";
-import store from "./context/store";
+import FactContext from "./context/FactContext";
+import ErrorBoundary from "./containers/ErrorBoundary";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ErrorBoundary>
+    <FactContext.Provider value="">
+      <App />
+    </FactContext.Provider>
+  </ErrorBoundary>,
   document.getElementById("root")
 );
 

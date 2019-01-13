@@ -1,4 +1,4 @@
-const baseUrl = "http://numbersapi.com";
+const baseUrl = "http://numbersap.com";
 
 const trivia = {
   url: "/random/trivia",

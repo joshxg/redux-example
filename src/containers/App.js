@@ -1,16 +1,29 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
 import { Button } from "@material-ui/core";
 
 import "./App.css";
 import ErrorBoundary from "../containers/ErrorBoundary";
-import { getFact } from "../context/actions/action";
-
+import withFact from "../context/withFact";
+import getFact from "../utilities/requests/getFact";
 class App extends Component {
-  click = endpoint => () => {
-    const { getFact } = this.props;
-    getFact(endpoint);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fact: null
+    };
+  }
+
+  click = endpoint => async () => {
+    try {
+      const fact = await getFact(endpoint);
+      this.setState({ fact });
+    } catch (error) {
+      this.setState(() => {
+        throw error;
+      });
+    }
   };
 
   render() {
@@ -19,7 +32,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <h1>Number trivia!</h1>
-            <p style={{ height: 200 }}>{this.props.fact}</p>
+            <p style={{ height: 200 }}>{this.state.fact}</p>
             <div
               style={{
                 display: "flex",
@@ -59,22 +72,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    fact: state.fact,
-    error: state.error
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getFact: endpoint => {
-      dispatch(getFact(endpoint));
-    }
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default withFact(App);

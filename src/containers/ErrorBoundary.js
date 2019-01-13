@@ -11,16 +11,20 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error) {
+    console.log("cdc");
     if (error.request) {
       // There was an error on the server side,
       // status code was not 2xx
+      console.log(error);
       this.setState({ errorState: true, errorMessage: "error!" });
     } else if (error.response) {
       // There was an error with the request, it never received
       // a response.
+      console.log(error);
       this.setState({ errorState: true, errorMessage: "error!" });
     } else {
       // There has been some other error
+
       this.setState({ errorState: true, errorMessage: "error!" });
     }
   }

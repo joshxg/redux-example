@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #00a3a3;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -18,8 +18,14 @@
   color: white;
 }
 
-.App-link {
+.save {
   color: #61dafb;
+  background-color: #282c34;
+}
+
+.App-link {
+  color: #a0f000;
+  font-family: "Coiny", cursive;
 }
 
 @keyframes App-logo-spin {
@@ -29,4 +35,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1 {
+  color: #a0f000;
+  font-family: "Coiny", cursive;
+  border-bottom: 1px solid #a0f000;
 }
